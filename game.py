@@ -57,9 +57,13 @@ class Game:
         self.screen.blit(self.ass, (self.snake.food[0]*self.cell_size, self.snake.food[1]*self.cell_size))
         self.screen.blit(self.face, (self.cell_size*self.snake.body[0][0], self.cell_size*self.snake.body[0][1]))
 
-        fps = self.font.render("%d" % self.clock.get_fps(), (0, 0, 0, 255), (255, 255, 255, 255))[0]
+        fps = self.font.render("FPS: %d" % self.clock.get_fps(), (0, 0, 0, 255), (255, 255, 255, 255))[0]
         fps.set_colorkey((255, 255, 255, 255))
         self.screen.blit(fps, (5, 5))
+
+        score = self.font.render("Score: %d" % len(self.snake.body), (0, 0, 0, 255), (255, 255, 255, 255))[0]
+        score.set_colorkey((255, 255, 255, 255))
+        self.screen.blit(score, (5, 25))
 
     def handle_events(self):
         """handle keyboard events
