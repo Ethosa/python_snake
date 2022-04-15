@@ -79,6 +79,8 @@ class Game:
 
 
 class Snake:
+    max_length = 100
+    
     def __init__(self, grid):
         """Snake constructor
         
@@ -95,6 +97,7 @@ class Snake:
     def add(self):
         self.body.append(self.body[-1][:])
         self.body[-1][1] -= 1
+        Snake.max_length += 1
 
     def go(self):
         while self.is_run:
@@ -103,7 +106,7 @@ class Snake:
                 if self.body[0][:] == self.food[:]:
                     self.add()
                     self.food = [random.randint(0, self.grid[0]-1), random.randint(0, self.grid[1]-1)]
-                time.sleep(0.004*(100-len(self.body)))
+                time.sleep(0.004*(Snake.max_length-len(self.body)))
 
     def w(self):
         for i in range(len(self.body)-1, -1, -1):
